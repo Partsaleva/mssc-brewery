@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-/**
- * Created by jt on 2019-04-20.
- */
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
@@ -38,7 +35,7 @@ public class BeerController {
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
-    @GetMapping({"/{beerId}"})
+    @PutMapping({"/{beerId}"})
     public  ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto){
         beerService.updateBeer(beerId, beerDto);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -46,7 +43,7 @@ public class BeerController {
 
     @DeleteMapping({"/{beerId}"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteBeer(@PathVariable("beerId") UUID beerId){
+    public void deleteById(@PathVariable("beerId") UUID beerId){
         beerService.deleteById(beerId);
     }
 }
